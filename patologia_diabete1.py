@@ -1,6 +1,6 @@
 """
 Realizzare un programma che analizzi tutti i valori ematici riscontrati durante le varie
-analisi del sangue e osservare le varie evoluzioni dei valori riscontrati.Ricordiamo che il valore
+analisi del sangue e osservare le evoluzioni dei valori riscontrati.Ricordiamo che il valore
 della glicata rappresenta la media della glicemia valutata nel range di un periodo di durata 3 mesi
 """
 class patologia_dt1:
