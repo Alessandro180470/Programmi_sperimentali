@@ -18,4 +18,5 @@ class patologia_dt1:
 
 analisi = patologia_dt1(float(input('Inserisci valore glicata: ')), float(input('Inserisci valore mmol: ')),
                         float(input('Inserisci valore ck: ')), input('Inserisci la data delle analisi: '))
+
 print(analisi)
