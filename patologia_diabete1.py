@@ -60,4 +60,4 @@ def esegui_funzione():
     calcola_valore_maggiore()
 if(__name__)=='__main__':
     esegui_funzione()
-print('Il nome del modulo è :',__name__,)
+print('Il nome del modulo è :',__name__,)#aggiornamenti saranno effettuati continuamente
