@@ -67,9 +67,10 @@ def esegui_funzione():
     miei_valori.append(analisi1)
     print(f'Il valore medio del ck è: {miei_valori.media_ck()}')
     print(f'Il valore medio della glicata è: {miei_valori.media_glicata()}')
-    calcola_valore_maggiore_minore_differenza()
+
 
 
 if (__name__) == '__main__':
     esegui_funzione()
-print('Il nome del modulo è :', __name__, )
+    calcola_valore_maggiore_minore_differenza()
+print('Il nome del modulo di importazione è :', __name__, )
