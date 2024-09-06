@@ -4,7 +4,6 @@ analisi del sangue e osservare le evoluzioni dei valori riscontrati.Ricordiamo c
 della glicata rappresenta la media della glicemia valutata nel range di un periodo di durata 3 mesi
 """
 
-
 class patologia_dt1:
     def __init__(self, glicata, mmol, ck, data):
         self.glicata = glicata
@@ -49,8 +48,50 @@ class calcolo_valore:
         return min(risultato)
 
     def val_max_glicata(self):
+        """
+        Questo modulo ricerca il valore massimo del ck
+        :return: MAX CK
+        """
         risultato = [v.glicata for v in self.valore]
         return max(risultato)
+
+    def ck_uguali(self, ck):
+        """
+        Questo modulo ci consente di rilevare su di
+        un'analisi ematica se ci sono valori di ck
+        o inserendo opportuni valori di parametri ematici
+        confrontarli e vedere si ci sono valori uguali in analisi
+        effettuate in date diverse
+        :param ck: o altri parametri da confrontare
+        :return: il valore da confronare
+        """
+        rilevazioni = []
+        for v in self.valore:
+            if v.ck == ck:
+                rilevazioni.append(v)
+        return rilevazioni
+
+    def confrontare_analisi_date_uguali(self,data):
+        """
+        Il modulo trova se ci sono delle analisi corrispondenti alla
+        stessa data e identifica l'errore di inserimento del dato
+        stesse date
+        :param data:data
+        :return:nessuno
+        """
+        count = 0
+        for v in self.valore:
+            dati = []
+            if v.data == data :
+                count = count + 1
+                dati.append(v.data)
+        print(f'Hai inserito la stessa data di un analisi infatti ne ho trovate:{count} ')
+        print('Inserisci una nuova data')
+
+
+
+
+
 
 if (__name__) == '__main__':
     print('Il nome del modulo di importazione è :', __name__, )
