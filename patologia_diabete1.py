@@ -4,6 +4,7 @@ analisi del sangue e osservare le evoluzioni dei valori riscontrati.Ricordiamo c
 della glicata rappresenta la media della glicemia valutata nel range di un periodo di durata 3 mesi
 """
 
+
 class patologia_dt1:
     def __init__(self, glicata, mmol, ck, data):
         self.glicata = glicata
@@ -20,7 +21,6 @@ class patologia_dt1:
 
     def __str__(self):
         return f'La glicata è: {self.glicata} con {self.mmol} mmol e un ck: {self.ck} analisi eseguita in data {self.data}'
-
 
 
 class calcolo_valore:
@@ -71,40 +71,26 @@ class calcolo_valore:
                 rilevazioni.append(v)
         return rilevazioni
 
-    def confrontare_analisi_date_uguali(self,data):
+    def trova_corrispondenza_ck_glicata(self, ck, glicata):
         """
-        Il modulo trova se ci sono delle analisi corrispondenti alla
-        stessa data e identifica l'errore di inserimento del dato
-        stesse date
-        :param data:data
-        :return:nessuno
+        Questo modulo ci consente di trovare la corrispondenza
+        dei valori di ck e glicata uguali in esami del sangue
+        compiuti in date differenti
+        :param ck: valore del CK
+        :param glicata: valore della Glicata
+        :return: I valori trovati =>RILEVAZIONI
         """
-        count = 0
+        rilevazioni = []
         for v in self.valore:
-            dati = []
-            if v.data == data :
-                count = count + 1
-                dati.append(v.data)
-        print(f'Hai inserito la stessa data di un analisi infatti ne ho trovate:{count} ')
-        print('Inserisci una nuova data')
+            if v.ck == ck and v.glicata == glicata:
+                rilevazioni.append(v)
 
 
-
+        return rilevazioni
 
 
 
 if (__name__) == '__main__':
     print('Il nome del modulo di importazione è :', __name__, )
 else:
-    print('Il modulo importato è :',__name__)
-
-
-
-
-
-
-
-
-
-
-
+    print('Il modulo importato è :', __name__)
