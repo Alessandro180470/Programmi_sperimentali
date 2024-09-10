@@ -13,7 +13,7 @@ class patologia_dt1:
         self.data = data
 
         if self.ck >= 200:
-            print(f'Attenzio:il valore del ck {self.ck} è alto ')
+            print(f'Attenzio:il valore del ck {self.ck} è alto ,analisi fatte in data :{self.data}')
         if self.glicata == 0:
             raise ValueError(f'Attenzione:valore glicata {self.glicata} non valido')
         if self.glicata > 6.7:
@@ -32,12 +32,24 @@ class calcolo_valore:
         self.valore.append(value)
 
     def media_ck(self):
+        """
+               Questo modulo ci consente di effettuare
+               una media di tutti i valori analizzati
+               della ck presa in esame
+               :return: Il risultato della media del ck
+               """
         if len(self.valore) == 0:
             raise ValueError('Attenzione non ci sono valori da valutare')
         risultato = [v.ck for v in self.valore]
         return sum(risultato) / len(risultato)
 
     def media_glicata(self):
+        """
+        Questo modulo ci consente di effettuare
+        una media di tutti i valori analizzati
+        della glicata presa in esame
+        :return: Il risultato della media della glicata
+        """
         if len(self.valore) == 0:
             raise ValueError('Attenzione non ci sono valori da valutare')
         risultato = [v.glicata for v in self.valore]
@@ -69,9 +81,10 @@ class calcolo_valore:
         for v in self.valore:
             if v.ck == ck:
                 rilevazioni.append(v)
+
         return rilevazioni
 
-    def trova_corrispondenza_ck_glicata(self, ck, glicata):
+    def trova_corrispondenza_ck_glicata(self, ck, glicata,data):
         """
         Questo modulo ci consente di trovare la corrispondenza
         dei valori di ck e glicata uguali in esami del sangue
@@ -79,15 +92,34 @@ class calcolo_valore:
         :param ck: valore del CK
         :param glicata: valore della Glicata
         :return: I valori trovati =>RILEVAZIONI
+
         """
         rilevazioni = []
         for v in self.valore:
-            if v.ck == ck and v.glicata == glicata:
+            if v.ck == ck and v.glicata == glicata and v.data == data:
                 rilevazioni.append(v)
+                return rilevazioni
+        raise ValueError (f'Valori non corrispondenti {glicata} {ck} {data}')
 
+    def has_data(self,data):
+        """
+        Cerca la data dell'analisi se la data non c'è il
+        dato non viene trovato
+        :param data:la data dell'analisi
+        :return: v se il dato è trovato
+        altrimenti abbiamo un'eccezione dove non viene
+        trovata la data
+        """
+        for v in self.valore:
+            if v.data == data:
+                return v
+        raise ValueError(f'data non valida {data} ')
 
-        return rilevazioni
-
+    def has_data1(self,data):
+        for v in self.valore:
+            if v.data == data:
+                return v
+        return None
 
 
 if (__name__) == '__main__':
