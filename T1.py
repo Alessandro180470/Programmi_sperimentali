@@ -16,24 +16,28 @@ analisi = patologia_dt1(float(input('Inserisci valore glicata: ')), float(input(
                 float(input('Inserisci valore ck: ')), input('Inserisci la data delle analisi: '))
 analisi1 =patologia_dt1(float(input('Inserisci valore glicata: ')),int(input('Inserisci valore mmol: ')),int(input('Inserisci valore ck: ')),input('Inserisci data del prelievo: '))
 """
-try:
-   valore2 = analisi_ematiche.trova_corrispondenza_ck_glicata(320,6.3,'2022/09/21')
-   for v in valore2:
-      print(v)
-except ValueError:
-   print(f'Valori non corrispondenti ')
-valore3 = analisi_ematiche.ck_uguali(540)
-
-try:
-   nuovo1 = analisi_ematiche.has_data('2024/09/06')
-except ValueError:
-   print(f'Data non valida o non trovata')
-
-
-nuovo2 = analisi_ematiche.has_data1('2024/10/21')
+nuovo2 = analisi_ematiche.has_data1('2029/10/21')
 if nuovo2 is None:
    print('Data non trovata')
 else:
    print(nuovo2)
+
+valore3 = analisi_ematiche.ck_uguali(540)
+for v in valore3:
+   print(v)
+try:
+    nuovo1 = analisi_ematiche.has_data('2024/09/06')
+
+except ValueError:
+   print(f'Data non valida o non trovata')
+try:
+    valore = analisi_ematiche.find_data('2024/09/10')
+    for t in valore:
+        print(t)
+
+except ValueError:
+    print(f'Data inserita non valida o non esistente')
+
+
 
 

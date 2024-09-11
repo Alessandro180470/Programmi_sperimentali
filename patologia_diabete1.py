@@ -20,7 +20,7 @@ class patologia_dt1:
             print(f'Attenzione hai un valore di glicata {self.glicata} inizio PREDIABETE')
 
     def __str__(self):
-        return f'La glicata è: {self.glicata} con {self.mmol} mmol e un ck: {self.ck} analisi eseguita in data {self.data}'
+          return f'La glicata è: {self.glicata} con {self.mmol} mmol e un ck: {self.ck} analisi eseguita in data {self.data}'
 
 
 class calcolo_valore:
@@ -84,24 +84,25 @@ class calcolo_valore:
 
         return rilevazioni
 
-    def trova_corrispondenza_ck_glicata(self, ck, glicata,data):
+    def find_data(self, data):
         """
-        Questo modulo ci consente di trovare la corrispondenza
-        dei valori di ck e glicata uguali in esami del sangue
-        compiuti in date differenti
-        :param ck: valore del CK
-        :param glicata: valore della Glicata
-        :return: I valori trovati =>RILEVAZIONI
+        Questo modulo ci consente inserendo la
+        data dell'analisi di trovare i valori
+        da noi inseriti nell'append della classe
+        di analisi_ematiche
+        :param data: La data del'analisi
+        :return: l'oggetto che appartiene a
+        tale data
+        """
 
-        """
         rilevazioni = []
         for v in self.valore:
-            if v.ck == ck and v.glicata == glicata and v.data == data:
-                rilevazioni.append(v)
-                return rilevazioni
-        raise ValueError (f'Valori non corrispondenti {glicata} {ck} {data}')
+            if v.data == data:
+               rilevazioni.append(v)
+               return rilevazioni
+        raise ValueError(f'Data inserita non trovata ')
 
-    def has_data(self,data):
+    def has_data(self, data):
         """
         Cerca la data dell'analisi se la data non c'è il
         dato non viene trovato
@@ -115,7 +116,7 @@ class calcolo_valore:
                 return v
         raise ValueError(f'data non valida {data} ')
 
-    def has_data1(self,data):
+    def has_data1(self, data):
         for v in self.valore:
             if v.data == data:
                 return v
