@@ -11,21 +11,29 @@ class patologia_dt1:
         self.mmol = mmol
         self.ck = ck
         self.data = data
-
-        if self.ck >= 200:
-            print(f'Attenzio:il valore del ck {self.ck} è alto ,analisi fatte in data :{self.data}')
         if self.glicata == 0:
             raise ValueError(f'Attenzione:valore glicata {self.glicata} non valido')
-        if self.glicata > 6.7:
-            print(f'Attenzione hai un valore di glicata {self.glicata} inizio PREDIABETE')
+        elif 6.6 <= self.glicata <= 6.7:
+            print(f'Attenzione il tuo valore della glicata {self.glicata} è potenzialmente in PREDIABETE ')
+        elif 6.8 <= self.glicata <= 7.0:
+            print(f'Attenzione il tuo valore della glicata {self.glicata} è alto sei a rischio DIABETE')
+
 
     def __str__(self):
-          return f'La glicata è: {self.glicata} con {self.mmol} mmol e un ck: {self.ck} analisi eseguita in data {self.data}'
+        return f'La glicata è: {self.glicata} con {self.mmol} mmol e un ck: {self.ck} analisi eseguita in data {self.data}'
 
+    def copy(self):
+        """
+        modulo da rivedere e
+        TODO ricorda da rrevisionare
+        :return:
+        """
 
+        return patologia_dt1(self.glicata,self.mmol,self.ck,self.data)
 class calcolo_valore:
 
     def __init__(self):
+
         self.valore = []
 
     def append(self, value):
@@ -98,8 +106,8 @@ class calcolo_valore:
         rilevazioni = []
         for v in self.valore:
             if v.data == data:
-               rilevazioni.append(v)
-               return rilevazioni
+                rilevazioni.append(v)
+                return rilevazioni
         raise ValueError(f'Data inserita non trovata ')
 
     def has_data(self, data):
@@ -121,6 +129,27 @@ class calcolo_valore:
             if v.data == data:
                 return v
         return None
+
+
+    def crea_una_copia(self):
+        """
+        Crea una copia del totale delle analisi inserite
+        e aggiungie in fase di prova che verrà poi in un
+        secondo momento modificato dei valori
+        :return:
+        """
+        nuovo = calcolo_valore()
+        for v in self.valore:
+            nuovo.valore.append(v.copy())
+        for v in nuovo.valore:
+            if 6.5<= v.glicata<=6.6:
+                v.glicata +=1
+            elif 35<=v.mmol <= 45:
+                v.mmol += 10
+            elif 200<= v.ck <= 600:
+                v.ck += 100
+        return nuovo
+
 
 
 if (__name__) == '__main__':
