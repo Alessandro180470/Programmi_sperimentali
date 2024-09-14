@@ -18,18 +18,16 @@ class patologia_dt1:
         elif 6.8 <= self.glicata <= 7.0:
             print(f'Attenzione il tuo valore della glicata {self.glicata} è alto sei a rischio DIABETE')
 
-
     def __str__(self):
         return f'La glicata è: {self.glicata} con {self.mmol} mmol e un ck: {self.ck} analisi eseguita in data {self.data}'
 
     def copy(self):
         """
-        modulo da rivedere e
-        TODO ricorda da rrevisionare
+        Questo modulo effettua una copia di se stesso
         :return:
         """
-
         return patologia_dt1(self.glicata,self.mmol,self.ck,self.data)
+
 class calcolo_valore:
 
     def __init__(self):
@@ -130,25 +128,32 @@ class calcolo_valore:
                 return v
         return None
 
-
-    def crea_una_copia(self):
+    def crea_migliorato(self):
         """
         Crea una copia del totale delle analisi inserite
-        e aggiungie in fase di prova che verrà poi in un
-        secondo momento modificato dei valori
-        :return:
+        e aggiungie un determinato valore di glicata non toccando
+        i valori delle analisi ematiche
+        :return: nuovo
         """
         nuovo = calcolo_valore()
+
         for v in self.valore:
             nuovo.valore.append(v.copy())
+        #nuovo.valore = self.valore.copy()
+
         for v in nuovo.valore:
-            if 6.5<= v.glicata<=6.6:
+            if 6.0 <= v.glicata <= 6.6:
                 v.glicata +=1
-            elif 35<=v.mmol <= 45:
-                v.mmol += 10
-            elif 200<= v.ck <= 600:
-                v.ck += 100
+            elif 6.7 <= v.glicata <= 6.9:
+                v.glicata +=2
+            elif 7.0 <= v.glicata <= 7.5:
+                v.glicata +=3
         return nuovo
+    def stampa(self):
+        print(f'Hai {len(self.valore)} analisi')
+        for v in self.valore:
+            print(v)
+        print(f'La media della glicata vale {self.media_glicata():.3f}')
 
 
 
@@ -156,3 +161,4 @@ if (__name__) == '__main__':
     print('Il nome del modulo di importazione è :', __name__, )
 else:
     print('Il modulo importato è :', __name__)
+#Arrivato alla lezione L07 38:37 minuti

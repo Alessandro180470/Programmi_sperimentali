@@ -1,3 +1,4 @@
+import patologia_diabete1
 from patologia_diabete1 import calcolo_valore, patologia_dt1
 
 analisi_ematiche = calcolo_valore()
@@ -8,7 +9,7 @@ analisi_ematiche.append(patologia_dt1(6.8,52,560,'2021/10/21'))
 analisi_ematiche.append(patologia_dt1(6.7,51,54,'2022/10/21'))
 analisi_ematiche.append(patologia_dt1(6.9,55,325,'2023/09/06'))
 analisi_ematiche.append(patologia_dt1(7.0,55,120,'2023/11/29'))
-analisi_ematiche.append(patologia_dt1(6.1,39,220,'2024/10/23'))
+analisi_ematiche.append(patologia_dt1(7.3,39,220,'2024/10/23'))
 #analisi_ematiche.append(patologia_dt1(float(input('Iserisci v gli')),int(input('ins val m')),int(input('ins v ck')),input('inserisci data')))
 
 """
@@ -27,19 +28,22 @@ valore3 = analisi_ematiche.ck_uguali(540)
 for v in valore3:
    print(str.v)
 try:
-    nuovo1 = analisi_ematiche.has_data('2022/10/23')
+    nuovo1 = analisi_ematiche.has_data('2021/10/21')
+    print(nuovo1)
 
 except ValueError:
    print(f'Data non valida o non trovata')
 try:
-    valore = analisi_ematiche.find_data('2022/10/23')
+    valore = analisi_ematiche.find_data('2020/09/21')
     for t in valore:
-        print(t.ck,t.glicata)
+        print(t)
 
 except ValueError:
     print(f'Data inserita non valida o non esistente')
 
-
-
-
-
+migliorato = analisi_ematiche.crea_migliorato()
+analisi_ematiche.append(patologia_dt1(9.0,59,690,'2024/11/30'))
+print('Analisi iniziali')
+analisi_ematiche.stampa()
+print('Analisi modificate')
+migliorato.stampa()
