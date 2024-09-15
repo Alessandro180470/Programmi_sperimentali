@@ -3,23 +3,30 @@ Realizzare un programma che analizzi tutti i valori ematici riscontrati durante 
 analisi del sangue e osservare le evoluzioni dei valori riscontrati.Ricordiamo che il valore
 della glicata rappresenta la media della glicemia valutata nel range di un periodo di durata 3 mesi
 """
+import dataclasses
 
 
+# class patologia_dt1:
+#     def __init__(self, glicata, mmol, ck, data):
+#         self.glicata = glicata
+#         self.mmol = mmol
+#         self.ck = ck
+#         self.data = data
+#         if self.glicata == 0:
+#             raise ValueError(f'Attenzione:valore glicata {self.glicata} non valido')
+#         elif 6.6 <= self.glicata <= 6.7:
+#             print(f'Attenzione il tuo valore della glicata {self.glicata} è potenzialmente in PREDIABETE ')
+#         elif 6.8 <= self.glicata <= 7.0:
+#             print(f'Attenzione il tuo valore della glicata {self.glicata} è alto sei a rischio DIABETE')
+#
+#     def __str__(self):
+#         return f'La glicata è: {self.glicata} con {self.mmol} mmol e un ck: {self.ck} analisi eseguita in data {self.data}'
+@dataclasses.dataclass
 class patologia_dt1:
-    def __init__(self, glicata, mmol, ck, data):
-        self.glicata = glicata
-        self.mmol = mmol
-        self.ck = ck
-        self.data = data
-        if self.glicata == 0:
-            raise ValueError(f'Attenzione:valore glicata {self.glicata} non valido')
-        elif 6.6 <= self.glicata <= 6.7:
-            print(f'Attenzione il tuo valore della glicata {self.glicata} è potenzialmente in PREDIABETE ')
-        elif 6.8 <= self.glicata <= 7.0:
-            print(f'Attenzione il tuo valore della glicata {self.glicata} è alto sei a rischio DIABETE')
-
-    def __str__(self):
-        return f'La glicata è: {self.glicata} con {self.mmol} mmol e un ck: {self.ck} analisi eseguita in data {self.data}'
+    glicata : float
+    mmol : int
+    ck : int
+    data : str
 
     def copy(self):
         """
@@ -27,6 +34,10 @@ class patologia_dt1:
         :return:
         """
         return patologia_dt1(self.glicata,self.mmol,self.ck,self.data)
+    def __str__(self):
+
+        return f'Valore glicata: {self.glicata} valore mmol: {self.mmol} valore ck: {self.ck} analisi eseguite in data: {self.data}'
+
 
 class calcolo_valore:
 
@@ -48,6 +59,22 @@ class calcolo_valore:
             raise ValueError('Attenzione non ci sono valori da valutare')
         risultato = [v.ck for v in self.valore]
         return sum(risultato) / len(risultato)
+    def ck_alto(self):
+        """
+        Questo modulo ci consente di verificare
+        se il valore riscontrato nelle analisi
+        risulti superare la soglia di 200
+        :return: il valore di ck
+        """
+        val_max = []
+
+        for v in self.valore:
+
+            if v.ck >= 200:
+                val_max.append(v.ck)
+                print(f'Attenzione il valore di ck che è :{v.ck} risulta essere molto alto rilevato in data:{v.data}')
+        print(f'Ho rilevato {len(val_max)} valori alti del CK sopra i 200')
+        return val_max
 
     def media_glicata(self):
         """
