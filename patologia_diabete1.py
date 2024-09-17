@@ -177,13 +177,29 @@ class calcolo_valore:
                 v.glicata +=3
         return nuovo
     def stampa(self):
+        """
+        Questo modulo ci stampa sia analisi ematiche che
+        il sistema migliorato più la media della glicata e del ck
+        ma questi due valori possono essere modificati
+        :return: non abbiamo nessun ritorno
+        """
         print(f'Hai {len(self.valore)} analisi')
         for v in self.valore:
             print(v)
         print(f'La media della glicata vale {self.media_glicata():.3f}')
+        print(f'La media del ck è : {self.media_ck():.3f}')
+"""
 
-
-
+ opzione 1 :
+ metodo stampa_per_nome e metodo stampa_per_altro_valore, che semplicemente stampano e non modificano nulla
+ 
+ opzione 2 :
+ metodo crea_libretto_ordinato_per_nome, ed un metodo crea_libretto_ordinato_per_punteggio, che creano
+ delle copie separate, sulle quali potro' chiamare il metodo stampa()
+ 
+ opzione 3 :
+ metodo ordina_per_nome, che modifica il libretto stesso riordinando i Voti , e ordina per punteggio poi userò metodo stampa()
+"""
 if (__name__) == '__main__':
     print('Il nome del modulo di importazione è :', __name__, )
 else:
