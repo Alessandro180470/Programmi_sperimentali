@@ -4,6 +4,7 @@ analisi del sangue e osservare le evoluzioni dei valori riscontrati.Ricordiamo c
 della glicata rappresenta la media della glicemia valutata nel range di un periodo di durata 3 mesi
 """
 import dataclasses
+import operator
 
 
 # class patologia_dt1:
@@ -23,22 +24,24 @@ import dataclasses
 #         return f'La glicata è: {self.glicata} con {self.mmol} mmol e un ck: {self.ck} analisi eseguita in data {self.data}'
 @dataclasses.dataclass
 class patologia_dt1:
-    glicata : float
-    mmol : int
-    ck : int
-    data : str
+    glicata: float
+    mmol: int
+    creatinina : float
+    ck: int
+    data: str
 
     def copy(self):
         """
         Questo modulo effettua una copia di se stesso
         :return:
         """
-        return patologia_dt1(self.glicata,self.mmol,self.ck,self.data)
+        return patologia_dt1(self.glicata, self.mmol,self.creatinina, self.ck, self.data)
+
     def __str__(self):
+        return f'Valore glicata: {self.glicata}, valore mmol: {self.mmol}, valore ck: {self.ck}, valore creatinina mg/dl: {self.creatinina}, analisi eseguite in data: {self.data}'
 
-        return f'Valore glicata: {self.glicata} valore mmol: {self.mmol} valore ck: {self.ck} analisi eseguite in data: {self.data}'
-
-
+def estrai_campo_data(d):
+    return d.data
 class calcolo_valore:
 
     def __init__(self):
@@ -59,6 +62,7 @@ class calcolo_valore:
             raise ValueError('Attenzione non ci sono valori da valutare')
         risultato = [v.ck for v in self.valore]
         return sum(risultato) / len(risultato)
+
     def ck_alto(self):
         """
         Questo modulo ci consente di verificare
@@ -155,6 +159,13 @@ class calcolo_valore:
                 return v
         return None
 
+    def copy(self):
+        nuovo = calcolo_valore()
+
+        for v in self.valore:
+            nuovo.valore.append(v.copy())
+        return nuovo
+
     def crea_migliorato(self):
         """
         Crea una copia del totale delle analisi inserite
@@ -162,20 +173,36 @@ class calcolo_valore:
         i valori delle analisi ematiche
         :return: nuovo
         """
-        nuovo = calcolo_valore()
-
-        for v in self.valore:
-            nuovo.valore.append(v.copy())
+        nuovo = self.copy()
         #nuovo.valore = self.valore.copy()
 
         for v in nuovo.valore:
             if 6.0 <= v.glicata <= 6.6:
-                v.glicata +=1
+                v.glicata += 1
             elif 6.7 <= v.glicata <= 6.9:
-                v.glicata +=2
+                v.glicata += 2
             elif 7.0 <= v.glicata <= 7.5:
-                v.glicata +=3
+                v.glicata += 3
         return nuovo
+
+    def crea_ordinato_per_data(self):
+        nuovo = self.copy()
+        # ordina_per_data
+        nuovo.ordina_per_data()
+        return nuovo
+
+
+
+    def ordina_per_data(self):
+        #ordina self.valore per data analisi
+        #self.valore.sort(key=estrai_campo_data)
+        self.valore.sort(key=operator.attrgetter('data'))
+        #self.valore.sort(key=lambda d : d.data)
+        #self.valore.sort()
+        print('Le analisi sono ordinate per data')
+
+
+
     def stampa(self):
         """
         Questo modulo ci stampa sia analisi ematiche che
@@ -183,11 +210,13 @@ class calcolo_valore:
         ma questi due valori possono essere modificati
         :return: non abbiamo nessun ritorno
         """
-        print(f'Hai {len(self.valore)} analisi')
+        print(f'Hai in totale {len(self.valore)} analisi')
         for v in self.valore:
             print(v)
-        print(f'La media della glicata vale {self.media_glicata():.3f}')
-        print(f'La media del ck è : {self.media_ck():.3f}')
+        print(f'La media della glicata vale ({self.media_glicata():.3f})')
+        print(f'La media del ck è : ({self.media_ck():.3f})')
+
+
 """
 
  opzione 1 :
@@ -198,7 +227,12 @@ class calcolo_valore:
  delle copie separate, sulle quali potro' chiamare il metodo stampa()
  
  opzione 3 :
- metodo ordina_per_nome, che modifica il libretto stesso riordinando i Voti , e ordina per punteggio poi userò metodo stampa()
+ metodo ordina_per_nome, che modifica il libretto stesso riordinando i Voti , e ordina per punteggio poi userò metodo 
+ stampa()
+ + aggiungiamo gratis un metodo copy()
+ 
+ opzione 2bis :
+ crea una copia shallow del libretto
 """
 if (__name__) == '__main__':
     print('Il nome del modulo di importazione è :', __name__, )

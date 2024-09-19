@@ -2,14 +2,15 @@ import patologia_diabete1
 from patologia_diabete1 import calcolo_valore, patologia_dt1
 
 analisi_ematiche = calcolo_valore()
-analisi1 = patologia_dt1(6.3, 56, 320, '2020/10/21')
+analisi1 = patologia_dt1(6.3, 56,0.22, 580, '2020/10/21')
 analisi_ematiche.append(analisi1)
-analisi_ematiche.append(patologia_dt1(6.3, 55, 320, '2020/09/21'))
-analisi_ematiche.append(patologia_dt1(6.8, 52, 560, '2021/10/21'))
-analisi_ematiche.append(patologia_dt1(6.7, 51, 540, '2022/10/21'))
-analisi_ematiche.append(patologia_dt1(6.9, 55, 325, '2023/09/06'))
-analisi_ematiche.append(patologia_dt1(7.0, 55, 120, '2023/11/29'))
-analisi_ematiche.append(patologia_dt1(7.3, 39, 190, '2024/10/23'))
+analisi_ematiche.append(patologia_dt1(6.3, 55,0.12, 320, '2020/09/21'))
+analisi_ematiche.append(patologia_dt1(6.8, 52,0.3, 560, '2021/10/21'))
+analisi_ematiche.append(patologia_dt1(6.7, 51,0.5, 540, '2022/10/21'))
+analisi_ematiche.append(patologia_dt1(6.9, 55,0.66, 325, '2022/09/30'))
+analisi_ematiche.append(patologia_dt1(7.0, 55,0.1, 120, '2023/11/29'))
+analisi_ematiche.append(patologia_dt1(7.3, 39,0.25, 190, '2021/10/23'))
+
 #analisi_ematiche.append(patologia_dt1(float(input('Iserisci v gli')),int(input('ins val m')),int(input('ins v ck')),input('inserisci data')))
 
 """
@@ -40,12 +41,16 @@ analisi1 =patologia_dt1(float(input('Inserisci valore glicata: ')),int(input('In
 #
 # except ValueError:
 #     print(f'Data inserita non valida o non esistente')
-analisi_ematiche.ck_alto()
-migliorato = analisi_ematiche.crea_migliorato()
-analisi_ematiche.append(patologia_dt1(9.0, 59, 690, '2024/11/30'))
-print('Analisi iniziali')
-analisi_ematiche.stampa()
+#analisi_ematiche.ck_alto()
+migliorato = analisi_ematiche.crea_ordinato_per_data()
+#analisi_ematiche.append(patologia_dt1(9.0, 59, 690, '2024/11/30'))
+#print('Analisi iniziali')
+#analisi_ematiche.stampa()
 
-print('Analisi modificate')
+#print('Analisi modificate')
 migliorato.stampa()
+
+
+
+
 
