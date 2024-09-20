@@ -7,7 +7,7 @@ analisi_ematiche.append(analisi1)
 analisi_ematiche.append(patologia_dt1(6.3, 55,0.12, 320, '2020/09/21'))
 analisi_ematiche.append(patologia_dt1(6.8, 52,0.3, 560, '2021/10/21'))
 analisi_ematiche.append(patologia_dt1(6.7, 51,0.5, 540, '2022/10/21'))
-analisi_ematiche.append(patologia_dt1(6.9, 55,0.66, 325, '2022/09/30'))
+analisi_ematiche.append(patologia_dt1(6.9, 55,0.66, 325, '2009/09/30'))
 analisi_ematiche.append(patologia_dt1(7.0, 55,0.1, 120, '2023/11/29'))
 analisi_ematiche.append(patologia_dt1(7.3, 39,0.25, 190, '2021/10/23'))
 
@@ -42,15 +42,16 @@ analisi1 =patologia_dt1(float(input('Inserisci valore glicata: ')),int(input('In
 # except ValueError:
 #     print(f'Data inserita non valida o non esistente')
 #analisi_ematiche.ck_alto()
-migliorato = analisi_ematiche.crea_ordinato_per_data()
+#migliorato = analisi_ematiche.crea_ordinato_per_data()
 #analisi_ematiche.append(patologia_dt1(9.0, 59, 690, '2024/11/30'))
 #print('Analisi iniziali')
 #analisi_ematiche.stampa()
 
 #print('Analisi modificate')
-migliorato.stampa()
-
-
-
-
-
+#migliorato.stampa()
+#print(migliorato.val_min_glicata())
+analisi_ematiche.ordina_per_data()
+analisi_ematiche.stampa()
+analisi_rimaste = analisi_ematiche.cancella_valori_analisi_ck(190)
+for t in analisi_rimaste:
+    print(t)

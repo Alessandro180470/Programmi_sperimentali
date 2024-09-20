@@ -194,14 +194,43 @@ class calcolo_valore:
 
 
     def ordina_per_data(self):
+        """
+        Questo modulo ci consente di ordinare per data
+        le analisi effettuate da quella più recente a quella più vecchia
+        :return: \
+        """
         #ordina self.valore per data analisi
         #self.valore.sort(key=estrai_campo_data)
-        self.valore.sort(key=operator.attrgetter('data'))
+        self.valore.sort(key=operator.attrgetter('data'),reverse=True)
         #self.valore.sort(key=lambda d : d.data)
         #self.valore.sort()
-        print('Le analisi sono ordinate per data')
+        print('Le analisi sono ordinate per data dalle piu\' recenti fino a quelle piu\' vecchie' )
 
+    def cancella_valori_analisi(self,mmol):
+        """
+        Questo modulo ci consente di eliminare
+        delle analisi con un valore mmol maggiore o
+        uguale al valore inserito
+        :param mmol: è un parametro della glicemia
+        :return:le analisi rimaste
+        """
+        nuove_analisi = [v for v in self.valore if v.mmol >= mmol]
+        print("Lista delle analisi modificate:")
+        print(f'Numero analisi rimaste:{len(nuove_analisi)}')
+        return nuove_analisi
 
+    def cancella_valori_analisi_ck(self,ck):
+        """
+        Questo modulo ci consente di eliminare
+        delle analisi con un valore ck maggiore o
+        uguale al valore inserito
+        :param ck: è un parametro della glicemia
+        :return:le analisi rimaste
+        """
+        nuove_analisi = [v for v in self.valore if v.ck > ck]
+        print(f'Questa è la lista delle analisi con un valore di CK maggiore di: {ck}')
+        print(f'Numero analisi rimaste:{len(nuove_analisi)}')
+        return nuove_analisi
 
     def stampa(self):
         """
