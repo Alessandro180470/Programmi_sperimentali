@@ -40,8 +40,8 @@ class patologia_dt1:
     def __str__(self):
         return f'Valore glicata: {self.glicata}, valore mmol: {self.mmol}, valore ck: {self.ck}, valore creatinina mg/dl: {self.creatinina}, analisi eseguite in data: {self.data}'
 
-def estrai_campo_data(d):
-    return d.data
+# def estrai_campo_data(d):
+#     return d.data
 class calcolo_valore:
 
     def __init__(self):
@@ -62,6 +62,12 @@ class calcolo_valore:
             raise ValueError('Attenzione non ci sono valori da valutare')
         risultato = [v.ck for v in self.valore]
         return sum(risultato) / len(risultato)
+
+    def valore_nullo_ck(self):
+        for v in self.valore:
+            if v.ck == 0:
+                raise ValueError ('Hai inserito un valore di  CK nullo')
+
 
     def ck_alto(self):
         """

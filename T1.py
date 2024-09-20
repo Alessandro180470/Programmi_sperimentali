@@ -4,10 +4,11 @@ from patologia_diabete1 import calcolo_valore, patologia_dt1
 analisi_ematiche = calcolo_valore()
 analisi1 = patologia_dt1(6.3, 56,0.22, 580, '2020/10/21')
 analisi_ematiche.append(analisi1)
-analisi_ematiche.append(patologia_dt1(6.3, 55,0.12, 320, '2020/09/21'))
+analisi_ematiche.append(patologia_dt1(6.3, 55,0.12,20, '2020/09/21'))
 analisi_ematiche.append(patologia_dt1(6.8, 52,0.3, 560, '2021/10/21'))
 analisi_ematiche.append(patologia_dt1(6.7, 51,0.5, 540, '2022/10/21'))
-analisi_ematiche.append(patologia_dt1(6.9, 55,0.66, 325, '2009/09/30'))
+analisi_ematiche.append(patologia_dt1(6.9, 55,0.66, 250
+                                      , '2009/09/30'))
 analisi_ematiche.append(patologia_dt1(7.0, 55,0.1, 120, '2023/11/29'))
 analisi_ematiche.append(patologia_dt1(7.3, 39,0.25, 190, '2021/10/23'))
 
@@ -55,3 +56,8 @@ analisi_ematiche.stampa()
 analisi_rimaste = analisi_ematiche.cancella_valori_analisi_ck(190)
 for t in analisi_rimaste:
     print(t)
+analisi = analisi_ematiche.valore_nullo_ck()
+print(analisi)
+ck = input("Se vuoi avere la media del CK delle tue analisi inserite premi c: ")
+if ck == 'c':
+   print(f'La media del tuo CK è {analisi_ematiche.media_ck()}')
