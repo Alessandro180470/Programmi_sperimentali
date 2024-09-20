@@ -223,7 +223,7 @@ class calcolo_valore:
         nuove_analisi = [v for v in self.valore if v.mmol >= mmol]
         print("Lista delle analisi modificate:")
         print(f'Numero analisi rimaste:{len(nuove_analisi)}')
-        return nuove_analisi
+        #return nuove_analisi
 
     def cancella_valori_analisi_ck(self,ck):
         """

@@ -1,3 +1,5 @@
+import array
+
 import patologia_diabete1
 from patologia_diabete1 import calcolo_valore, patologia_dt1
 
@@ -60,4 +62,7 @@ analisi = analisi_ematiche.valore_nullo_ck()
 print(analisi)
 ck = input("Se vuoi avere la media del CK delle tue analisi inserite premi c: ")
 if ck == 'c':
-   print(f'La media del tuo CK è {analisi_ematiche.media_ck()}')
+   print(f'La media del tuo CK è {analisi_ematiche.media_ck():f}')
+
+# array = array.array("d",(1.5,4.5,7.9,0.9))
+# print(array[1])
