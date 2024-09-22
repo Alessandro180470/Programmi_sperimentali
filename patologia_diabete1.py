@@ -124,6 +124,7 @@ class calcolo_valore:
         for v in self.valore:
             if v.ck == ck:
                 rilevazioni.append(v)
+        print(f'Ho trovato {len(rilevazioni)} valori uguali')
 
         return rilevazioni
 
