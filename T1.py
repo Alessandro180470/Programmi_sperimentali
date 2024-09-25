@@ -1,4 +1,5 @@
 import array
+import collections
 
 import patologia_diabete1
 from patologia_diabete1 import calcolo_valore, patologia_dt1
@@ -6,13 +7,13 @@ from patologia_diabete1 import calcolo_valore, patologia_dt1
 analisi_ematiche = calcolo_valore()
 analisi1 = patologia_dt1(6.3, 56, 0.22, 540, '2020/10/21')
 analisi_ematiche.append(analisi1)
-analisi_ematiche.append(patologia_dt1(6.3, 55, 0.12, 20, '2020/06/21'))
+analisi_ematiche.append(patologia_dt1(6.3, 55, 0.12, 220, '2020/06/21'))
 analisi_ematiche.append(patologia_dt1(6.8, 52, 0.3, 560, '2021/10/21'))
 analisi_ematiche.append(patologia_dt1(6.7, 51, 0.5, 540, '2022/10/21'))
 analisi_ematiche.append(patologia_dt1(6.9, 55, 0.66, 250, '2023/09/30'))
 
 analisi_ematiche.append(patologia_dt1(7.0, 55, 0.1, 120, '2023/11/29'))
-analisi_ematiche.append(patologia_dt1(7.3, 39, 0.25, 190, '2021/10/23'))
+analisi_ematiche.append(patologia_dt1(7.3, 39, 0.25, 220, '2021/10/23'))
 
 #analisi_ematiche.append(patologia_dt1(float(input('Iserisci v gli')),int(input('ins val m')),int(input('ins v ck')),input('inserisci data')))
 
@@ -69,7 +70,31 @@ analisi1 =patologia_dt1(float(input('Inserisci valore glicata: ')),int(input('In
 # print(array[1])
 # analisi3 = analisi_ematiche.cancella_valori_analisi_ck(200)
 # for v in analisi3:
-#     print(v)
-analisi4 = analisi_ematiche.ck_uguali(540)
-for g in analisi4:
-    print(g)
+# #     print(v)
+# analisi4 = analisi_ematiche.ck_uguali(540)
+# for g in analisi4:
+#     print(g)
+# ass = frozenset('12395897410099999999')
+# ass1 = set('1254')
+# print(ass, ass1)
+# cnt = collections.Counter('11111122335999999lalessandro55556669555887799999999')
+# print(cnt.total())
+# print(list(cnt))
+# print(set(cnt))
+# print(dict(cnt))
+# print(cnt.items())
+# print(cnt.values())
+#lezione l9 minuti 10:08
+# a = (cnt.most_common())
+# print(a)
+# for v in a:
+#     if v[1] > 10:
+#        print(f'il {v[0]} è ripetuto {v[1]} volte')
+# # p = collections.Counter(a)
+# # print(p)
+
+# ris = collections.Counter(analisi_ematiche.ck_alto())
+# # print(ris)
+# for v in ris:
+#     print(f'Ho rilevato {ris[v]} valori con un ck {v}')
+analisi_ematiche.conta_valori_ck()

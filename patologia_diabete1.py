@@ -3,6 +3,7 @@ Realizzare un programma che analizzi tutti i valori ematici riscontrati durante 
 analisi del sangue e osservare le evoluzioni dei valori riscontrati.Ricordiamo che il valore
 della glicata rappresenta la media della glicemia valutata nel range di un periodo di durata 3 mesi
 """
+import collections
 import dataclasses
 import operator
 
@@ -109,6 +110,22 @@ class calcolo_valore:
         """
         risultato = [v.glicata for v in self.valore]
         return max(risultato)
+
+    def conta_valori_ck(self):
+        """
+        Questo modulo ci consente di individuare
+        valori uguali del CK nelle varie analisi
+        effettuate
+        :return: risultato (valori ck trovati)
+        """
+        risultato = collections.Counter(self.ck_alto())
+        for v in risultato:
+            if risultato[v] > 1:
+                val = str('valori')
+            else:
+                val = str('valore')
+            print(f'Ho rilevato {risultato[v]} {str(val)} con un ck {v} ')
+        return risultato
 
     def ck_uguali(self, ck):
         """
