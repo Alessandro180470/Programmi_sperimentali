@@ -11,7 +11,7 @@ analisi_ematiche.append(patologia_dt1(6.3, 55, 0.12, 220, '2020/06/21'))
 analisi_ematiche.append(patologia_dt1(6.8, 52, 0.3, 560, '2021/10/21'))
 analisi_ematiche.append(patologia_dt1(6.7, 51, 0.5, 540, '2022/10/21'))
 analisi_ematiche.append(patologia_dt1(6.9, 55, 0.66, 250, '2023/09/30'))
-
+analisi_ematiche.append(patologia_dt1(6.8, 55, 0.66, 366, '2024/09/30'))
 analisi_ematiche.append(patologia_dt1(7.0, 55, 0.1, 120, '2023/11/29'))
 analisi_ematiche.append(patologia_dt1(7.3, 39, 0.25, 220, '2021/10/23'))
 
@@ -98,3 +98,5 @@ analisi1 =patologia_dt1(float(input('Inserisci valore glicata: ')),int(input('In
 # for v in ris:
 #     print(f'Ho rilevato {ris[v]} valori con un ck {v}')
 analisi_ematiche.conta_valori_ck()
+analisi_ematiche.ordina_per_data()
+analisi_ematiche.stampa()

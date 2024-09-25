@@ -81,7 +81,7 @@ class calcolo_valore:
 
         for v in self.valore:
 
-            if v.ck >= 200:
+            if v.ck >= 220:
                 val_max.append(v.ck)
                 print(f'Attenzione il valore di ck che è :{v.ck} risulta essere molto alto rilevato in data:{v.data}')
         print(f'Ho rilevato {len(val_max)} valori alti del CK sopra i 200')
