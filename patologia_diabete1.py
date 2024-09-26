@@ -28,6 +28,7 @@ class patologia_dt1:
     glicata: float
     mmol: int
     creatinina : float
+    colesterolo : int
     ck: int
     data: str
 
@@ -36,10 +37,10 @@ class patologia_dt1:
         Questo modulo effettua una copia di se stesso
         :return:
         """
-        return patologia_dt1(self.glicata, self.mmol,self.creatinina, self.ck, self.data)
+        return patologia_dt1(self.glicata, self.mmol,self.creatinina,self.colesterolo, self.ck, self.data)
 
     def __str__(self):
-        return f'Valore glicata: {self.glicata}, valore mmol: {self.mmol}, valore ck: {self.ck}, valore creatinina mg/dl: {self.creatinina}, analisi eseguite in data: {self.data}'
+        return f'Valore glicata: {self.glicata}, valore mmol: {self.mmol}, valore ck: {self.ck}, valore creatinina mg/dl: {self.creatinina},valore colesterolo :{self.colesterolo}, analisi eseguite in data: {self.data}'
 
 # def estrai_campo_data(d):
 #     return d.data
