@@ -5,7 +5,9 @@ della glicata rappresenta la media della glicemia valutata nel range di un perio
 """
 import collections
 import dataclasses
+import keyword
 import operator
+from math import sqrt
 
 
 # class patologia_dt1:
@@ -27,8 +29,8 @@ import operator
 class patologia_dt1:
     glicata: float
     mmol: int
-    creatinina : float
-    colesterolo : int
+    creatinina: float
+    colesterolo: int
     ck: int
     data: str
 
@@ -37,10 +39,11 @@ class patologia_dt1:
         Questo modulo effettua una copia di se stesso
         :return:
         """
-        return patologia_dt1(self.glicata, self.mmol,self.creatinina,self.colesterolo, self.ck, self.data)
+        return patologia_dt1(self.glicata, self.mmol, self.creatinina, self.colesterolo, self.ck, self.data)
 
     def __str__(self):
         return f'Valore glicata: {self.glicata}, valore mmol: {self.mmol}, valore ck: {self.ck}, valore creatinina mg/dl: {self.creatinina},valore colesterolo :{self.colesterolo}, analisi eseguite in data: {self.data}'
+
 
 # def estrai_campo_data(d):
 #     return d.data
@@ -68,8 +71,7 @@ class calcolo_valore:
     def valore_nullo_ck(self):
         for v in self.valore:
             if v.ck == 0:
-                raise ValueError ('Hai inserito un valore di  CK nullo')
-
+                raise ValueError('Hai inserito un valore di  CK nullo')
 
     def ck_alto(self):
         """
@@ -111,6 +113,16 @@ class calcolo_valore:
         """
         risultato = [v.glicata for v in self.valore]
         return max(risultato)
+    def media(self):
+        """
+        da rivedere dobbiamo calcolare il sigma
+        :return:
+        """
+        risultato = [t.mmol for t in self.valore]
+        media = sum(risultato)/len(risultato)
+        return len(self.valore)/media
+
+
 
     def conta_valori_ck(self):
         """
@@ -126,7 +138,28 @@ class calcolo_valore:
             else:
                 val = str('valore')
             print(f'Ho rilevato {risultato[v]} {str(val)} con un ck {v} ')
-        return risultato
+        return risultato.most_common()
+
+    def media_e__valore_sqm(self):
+        """
+        Questo modulo consente di calcolare lo scostamento
+        quadratico medio di un insieme di valori assegnati
+        :return: il valore sqm e della media
+        """
+        mmol = []
+        for v in self.valore:
+            mmol.append(v.mmol)
+            media = sum(mmol)/len(mmol)
+            val = []
+        for i in range (len(mmol)):
+            val.append((mmol[i] - media))
+        sqm_tot = []
+        for f in range (len(val)):
+            sqm = (val[f]**2)
+            sqm_tot.append(sqm)
+        valore_sqm = (sum(sqm_tot)/len(val))#Ricordiamo che lo sqm è lo scarto quadratico medio
+        return (f'Il valore del SQM dei mmol è: {round(sqrt(valore_sqm),3)} la media dei mmol è :{media} i valori MMOL :{mmol}')
+
 
     def ck_uguali(self, ck):
         """
@@ -216,22 +249,19 @@ class calcolo_valore:
         nuovo.ordina_per_data()
         return nuovo
 
-
-
-    def ordina_per_data(self):
+    def ordina_per_mmol(self):
         """
-        Questo modulo ci consente di ordinare per data
-        le analisi effettuate da quella più recente a quella più vecchia
+        Questo modulo ci consente di ordinare i valori in ordine crescente mmol
         :return: \
         """
         #ordina self.valore per data analisi
         #self.valore.sort(key=estrai_campo_data)
-        self.valore.sort(key=operator.attrgetter('data'),reverse=True)
+        self.valore.sort(key=operator.attrgetter('mmol'), reverse=False)
         #self.valore.sort(key=lambda d : d.data)
         #self.valore.sort()
-        print('Le analisi sono ordinate per data dalle piu\' recenti fino a quelle piu\' vecchie' )
+        print('I valori MMOL sono ordinati in senso crescente')
 
-    def cancella_valori_analisi(self,mmol):
+    def cancella_valori_analisi(self, mmol):
         """
         Questo modulo ci consente di eliminare
         delle analisi con un valore mmol maggiore o
@@ -244,7 +274,7 @@ class calcolo_valore:
         print(f'Numero analisi rimaste:{len(nuove_analisi)}')
         #return nuove_analisi
 
-    def cancella_valori_analisi_ck(self,ck):
+    def cancella_valori_analisi_ck(self, ck):
         """
         Questo modulo ci consente di eliminare
         delle analisi con un valore ck maggiore o
