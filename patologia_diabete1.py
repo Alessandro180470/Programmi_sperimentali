@@ -2,6 +2,9 @@
 Realizzare un programma che analizzi tutti i valori ematici riscontrati durante le varie
 analisi del sangue e osservare le evoluzioni dei valori riscontrati.Ricordiamo che il valore
 della glicata rappresenta la media della glicemia valutata nel range di un periodo di durata 3 mesi
+In questo programma utilizzeremo anche lo SQM cioè lo scarto quadratico medio o chiamato anche
+deviazione stadard questi parametri ci permettono di capire di quanto si discostano i valori
+della distribuzione (dati delle analisi specifici es. mmol oppure glicata)dalla media
 """
 import collections
 import dataclasses
@@ -158,7 +161,8 @@ class calcolo_valore:
             sqm = (val[f]**2)
             sqm_tot.append(sqm)
         valore_sqm = (sum(sqm_tot)/len(val))#Ricordiamo che lo sqm è lo scarto quadratico medio
-        return (f'Il valore del SQM dei mmol è: {round(sqrt(valore_sqm),3)} la media dei mmol è : {media} i valori MMOL :{mmol}')
+        coefficiente_variazione = round(sqrt(valore_sqm)/media*100,4)
+        return (f'Il valore del SQM dei mmol è: {round(sqrt(valore_sqm),3)} la media dei mmol è : {round(media,3)} i valori MMOL :{mmol} il coefficiente di variazione {coefficiente_variazione}%')
 
 
     def media_e_valore_sqm_glicata(self):
@@ -179,7 +183,8 @@ class calcolo_valore:
             sqm = (val[f]**2)
             sqm_tot.append(sqm)
         valore_sqm = (sum(sqm_tot)/len(val))#Ricordiamo che lo sqm è lo scarto quadratico medio
-        return (f'Il valore del SQM della glicata è: {round(sqrt(valore_sqm),3)} la media della glicata è : {round((media),3)} i corrispettivi valori:{glicata} il valore della varianza è : {round((valore_sqm),3)}')
+        coefficiente_variazione = round(sqrt(valore_sqm) / media*100, 4)
+        return (f'Il valore del SQM della glicata è: {round(sqrt(valore_sqm),3)} la media della glicata è : {round((media),3)} i corrispettivi valori:{glicata} il valore della varianza è : {round((valore_sqm),3)} coefficiente di variazione {coefficiente_variazione}%')
 
 
     def ck_uguali(self, ck):
