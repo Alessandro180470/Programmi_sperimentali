@@ -140,7 +140,7 @@ class calcolo_valore:
             print(f'Ho rilevato {risultato[v]} {str(val)} con un ck {v} ')
         return risultato.most_common()
 
-    def media_e__valore_sqm(self):
+    def media_e_valore_sqm_mmol(self):
         """
         Questo modulo consente di calcolare lo scostamento
         quadratico medio di un insieme di valori assegnati
@@ -158,7 +158,28 @@ class calcolo_valore:
             sqm = (val[f]**2)
             sqm_tot.append(sqm)
         valore_sqm = (sum(sqm_tot)/len(val))#Ricordiamo che lo sqm è lo scarto quadratico medio
-        return (f'Il valore del SQM dei mmol è: {round(sqrt(valore_sqm),3)} la media dei mmol è :{media} i valori MMOL :{mmol}')
+        return (f'Il valore del SQM dei mmol è: {round(sqrt(valore_sqm),3)} la media dei mmol è : {media} i valori MMOL :{mmol}')
+
+
+    def media_e_valore_sqm_glicata(self):
+        """
+        Questo modulo consente di calcolare lo scostamento
+        quadratico medio di un insieme di valori assegnati
+        :return: il valore sqm e della media
+        """
+        glicata = []
+        for v in self.valore:
+            glicata.append(v.glicata)
+            media = sum(glicata)/len(glicata)
+            val = []
+        for i in range (len(glicata)):
+            val.append((glicata[i] - media))
+        sqm_tot = []
+        for f in range (len(val)):
+            sqm = (val[f]**2)
+            sqm_tot.append(sqm)
+        valore_sqm = (sum(sqm_tot)/len(val))#Ricordiamo che lo sqm è lo scarto quadratico medio
+        return (f'Il valore del SQM della glicata è: {round(sqrt(valore_sqm),3)} la media della glicata è : {round((media),3)} i corrispettivi valori:{glicata} il valore della varianza è : {round((valore_sqm),3)}')
 
 
     def ck_uguali(self, ck):
@@ -249,14 +270,14 @@ class calcolo_valore:
         nuovo.ordina_per_data()
         return nuovo
 
-    def ordina_per_mmol(self):
+    def ordina_per_mmol(self,valore):
         """
         Questo modulo ci consente di ordinare i valori in ordine crescente mmol
         :return: \
         """
         #ordina self.valore per data analisi
         #self.valore.sort(key=estrai_campo_data)
-        self.valore.sort(key=operator.attrgetter('mmol'), reverse=False)
+        self.valore.sort(key=operator.attrgetter(valore), reverse=False)
         #self.valore.sort(key=lambda d : d.data)
         #self.valore.sort()
         print('I valori MMOL sono ordinati in senso crescente')

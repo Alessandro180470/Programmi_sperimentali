@@ -5,15 +5,15 @@ import patologia_diabete1
 from patologia_diabete1 import calcolo_valore, patologia_dt1
 
 analisi_ematiche = calcolo_valore()
-#analisi1 = patologia_dt1(6.3, 57, 0.22, 160, 540, '2020/10/21')
-#analisi_ematiche.append(analisi1)
-analisi_ematiche.append(patologia_dt1(6.3, 50, 0.12, 190, 220, '2020/06/21'))
-analisi_ematiche.append(patologia_dt1(6.8, 52, 0.3, 220, 560, '2021/10/21'))
-analisi_ematiche.append(patologia_dt1(6.7, 55, 0.5, 165, 540, '2022/10/21'))
-analisi_ematiche.append(patologia_dt1(6.9, 49, 0.66, 160, 250, '2023/09/30'))
-analisi_ematiche.append(patologia_dt1(6.8, 48, 0.66, 185, 366, '2024/09/30'))
-analisi_ematiche.append(patologia_dt1(7.0, 47, 0.1, 195, 120, '2017/11/29'))
-analisi_ematiche.append(patologia_dt1(7.3, 49, 0.25, 240, 220, '2021/10/23'))
+analisi1 = patologia_dt1(7.1, 57, 0.22, 160, 540, '2020/10/21')
+# analisi_ematiche.append(analisi1)
+analisi_ematiche.append(patologia_dt1(6.9, 50, 0.12, 190, 220, '2020/06/21'))
+analisi_ematiche.append(patologia_dt1(7.0, 52, 0.3, 220, 560, '2021/10/21'))
+analisi_ematiche.append(patologia_dt1(7.1, 55, 0.5, 165, 540, '2022/10/21'))
+analisi_ematiche.append(patologia_dt1(7.4, 49, 0.66, 160, 250, '2023/09/30'))
+analisi_ematiche.append(patologia_dt1(6.4, 48, 0.66, 185, 366, '2024/09/30'))
+analisi_ematiche.append(patologia_dt1(6.9, 47, 0.1, 195, 120, '2017/11/29'))
+analisi_ematiche.append(patologia_dt1(7.0, 49, 0.25, 240, 220, '2021/10/23'))
 
 #analisi_ematiche.append(patologia_dt1(float(input('Iserisci v gli')),int(input('ins val m')),int(input('ins v ck')),input('inserisci data')))
 
@@ -103,9 +103,12 @@ analisi1 =patologia_dt1(float(input('Inserisci valore glicata: ')),int(input('In
 # val = (analisi_ematiche.conta_valori_ck())
 # val1 = analisi_ematiche.crea_ordinato_per_data()
 # val1.stampa()
-analisi_ematiche.ordina_per_mmol()
-ris = analisi_ematiche.media_e__valore_sqm()
+analisi_ematiche.ordina_per_mmol('mmol')
+ris = analisi_ematiche.media_e_valore_sqm_mmol()
 print(ris)
+analisi_ematiche.ordina_per_mmol('glicata')
+ris1 = analisi_ematiche.media_e_valore_sqm_glicata()
 
+print(ris1)
 
 
