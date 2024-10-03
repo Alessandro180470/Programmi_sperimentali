@@ -275,7 +275,7 @@ class calcolo_valore:
         nuovo.ordina_per_data()
         return nuovo
 
-    def ordina_per_mmol(self,valore):
+    def ordina_per_parametri(self,valore):
         """
         Questo modulo ci consente di ordinare i valori in ordine crescente mmol
         :return: \
@@ -285,7 +285,7 @@ class calcolo_valore:
         self.valore.sort(key=operator.attrgetter(valore), reverse=False)
         #self.valore.sort(key=lambda d : d.data)
         #self.valore.sort()
-        print('I valori MMOL sono ordinati in senso crescente')
+        print('I valori sono ordinati in senso crescente')
 
     def cancella_valori_analisi(self, mmol):
         """

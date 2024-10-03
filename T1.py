@@ -7,7 +7,7 @@ from patologia_diabete1 import calcolo_valore, patologia_dt1
 analisi_ematiche = calcolo_valore()
 analisi1 = patologia_dt1(7.1, 57, 0.22, 160, 540, '2020/10/21')
 # analisi_ematiche.append(analisi1)
-analisi_ematiche.append(patologia_dt1(6.9, 50, 0.12, 190, 220, '2020/06/21'))
+analisi_ematiche.append(patologia_dt1(6.4, 47, 0.12, 87, 220, '2024/09/26'))
 analisi_ematiche.append(patologia_dt1(7.0, 52, 0.3, 220, 560, '2021/10/21'))
 analisi_ematiche.append(patologia_dt1(7.1, 55, 0.5, 165, 540, '2022/10/21'))
 analisi_ematiche.append(patologia_dt1(7.4, 50, 0.66, 160, 250, '2023/09/30'))
@@ -103,12 +103,9 @@ analisi1 =patologia_dt1(float(input('Inserisci valore glicata: ')),int(input('In
 # val = (analisi_ematiche.conta_valori_ck())
 # val1 = analisi_ematiche.crea_ordinato_per_data()
 # val1.stampa()
-analisi_ematiche.ordina_per_mmol('mmol')
+analisi_ematiche.ordina_per_parametri('mmol')
 ris = analisi_ematiche.media_e_valore_sqm_mmol()
 print(ris)
-analisi_ematiche.ordina_per_mmol('glicata')
+analisi_ematiche.ordina_per_parametri('glicata')
 ris1 = analisi_ematiche.media_e_valore_sqm_glicata()
-
 print(ris1)
-
-
