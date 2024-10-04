@@ -23,11 +23,13 @@ def main(page: ft.Page):
     # txtOut.update()
     # sleep(1)
     def handleBottone(e):
-       txtOut.value = ""
-       page.update()
-       sleep(1)
-       txtOut.value="Pulsante cliccato."
-       page.update()
+        lv.controls.append(ft.Text("Tasto cliccato"))
+        lv.update()
+       #txtOut.value = ""
+       # txtOut.update()
+       # sleep(1)
+       # txtOut.value="Pulsante cliccato."
+       # page.update()
 
     txt1 = ft.Text(value="Colonna 1", color='red')
     txt2 = ft.Text(value="Colonna 2", color='blue')
@@ -36,6 +38,9 @@ def main(page: ft.Page):
     row1 = ft.Row([txt1, txt2, btn])
     txtOut = ft.Text(value="", color="red", size=30)
     page.add(row1,txtOut)
+
+    lv = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
+    page.add(lv)
 
 
 ft.app(target=main, view=ft.AppView.FLET_APP)

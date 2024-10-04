@@ -186,6 +186,47 @@ class calcolo_valore:
         coefficiente_variazione = round(sqrt(valore_sqm) / media*100, 4)
         return (f'Il valore del SQM della glicata è: {round(sqrt(valore_sqm),3)} la media della glicata è : {round((media),3)} i corrispettivi valori:{glicata} il valore della varianza è : {round((valore_sqm),3)} coefficiente di variazione {coefficiente_variazione}%')
 
+    def calcolo_coefficiente_variazione(self):
+        """
+        Questo modulo ci consente di verificare la
+        variabilita tra due grandezze di unità di
+        misura differenti
+        :return: coefficiente di variabilità
+        """
+        glicata = []
+        for v in self.valore:
+            glicata.append(v.glicata)
+            media = sum(glicata) / len(glicata)
+            val = []
+        for i in range(len(glicata)):
+            val.append((glicata[i] - media))
+        sqm_tot = []
+        for f in range(len(val)):
+            sqm = (val[f] ** 2)
+            sqm_tot.append(sqm)
+        valore_sqm = (sum(sqm_tot) / len(val))  # Ricordiamo che lo sqm è lo scarto quadratico medio
+        coefficiente_variazione = round(sqrt(valore_sqm) / media * 100, 4)
+        coef_ = coefficiente_variazione/media
+        mmol = []
+        for v in self.valore:
+            mmol.append(v.mmol)
+            media1 = sum(mmol) / len(mmol)
+            val = []
+        for i in range(len(mmol)):
+            val.append((mmol[i] - media1))
+        sqm_tot = []
+        for f in range(len(val)):
+            sqm = (val[f] ** 2)
+            sqm_tot.append(sqm)
+        valore_sqm = (sum(sqm_tot) / len(val))  # Ricordiamo che lo sqm è lo scarto quadratico medio
+        coefficiente_variazione1 = round(sqrt(valore_sqm) / media1 * 100, 4)
+        coef1 = coefficiente_variazione1/media1
+        if coef_ > coef1:
+            return f'Variabilita della glicemia che è:{round(coef_,4)} e maggiore di quella dei mmol che è:{round(coef1,4)}'
+
+        return f'Variabilità mmol che è :{round(coef1,4)} è maggiore di quella della glicemia che è:,{round(coef_,4)}'
+
+
 
     def ck_uguali(self, ck):
         """
