@@ -193,13 +193,14 @@ class calcolo_valore:
         misura differenti
         :return: coefficiente di variabilità
         """
-        glicata = []
+        value2 = []
         for v in self.valore:
-            glicata.append(v.glicata)
-            media = sum(glicata) / len(glicata)
+
+            value2.append(v.mmol)
+            media = sum(value2) / len(value2)
             val = []
-        for i in range(len(glicata)):
-            val.append((glicata[i] - media))
+        for i in range(len(value2)):
+            val.append((value2[i] - media))
         sqm_tot = []
         for f in range(len(val)):
             sqm = (val[f] ** 2)
@@ -207,13 +208,14 @@ class calcolo_valore:
         valore_sqm = (sum(sqm_tot) / len(val))  # Ricordiamo che lo sqm è lo scarto quadratico medio
         coefficiente_variazione = round(sqrt(valore_sqm) / media * 100, 4)
         coef_ = coefficiente_variazione/media
-        mmol = []
+        value3 = []
+
         for v in self.valore:
-            mmol.append(v.mmol)
-            media1 = sum(mmol) / len(mmol)
+            value3.append(v.glicata)
+            media1 = sum(value3) / len(value3)
             val = []
-        for i in range(len(mmol)):
-            val.append((mmol[i] - media1))
+        for i in range(len(value3)):
+            val.append((value3[i] - media1))
         sqm_tot = []
         for f in range(len(val)):
             sqm = (val[f] ** 2)
@@ -222,10 +224,14 @@ class calcolo_valore:
         coefficiente_variazione1 = round(sqrt(valore_sqm) / media1 * 100, 4)
         coef1 = coefficiente_variazione1/media1
         if coef_ > coef1:
-            return f'Variabilita della glicemia che è:{round(coef_,4)} e maggiore di quella dei mmol che è:{round(coef1,4)}'
+            return f'Variabilita della glicata che è:{round(coef_,4)} e maggiore di quella dei mmol che è:{round(coef1,4)}'
 
-        return f'Variabilità mmol che è :{round(coef1,4)} è maggiore di quella della glicemia che è:,{round(coef_,4)}'
+        return (f'Variabilità mmol che è :{round(coef1,4)} è maggiore di quella della glicata che è:{round(coef_,4)}')
 
+    def elimina_dati(self,valore):
+        risultato = [v for v in self.valore if v.ck >= valore]
+        print(f'Ho eliminato tutti i valori di ck speriori a {valore}')
+        return risultato
 
 
     def ck_uguali(self, ck):
