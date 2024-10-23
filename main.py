@@ -8,6 +8,7 @@ def main(page: ft.Page):
     v = View(page)
     c = Controller(v)
     v.setController(c)
+    v.caricaInterfaccia()
 
 
 ft.app(target=main)
