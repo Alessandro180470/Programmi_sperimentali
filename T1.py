@@ -117,3 +117,5 @@ for v in ris4:
     print(v)
 r = analisi_ematiche.calcolo_coefficiente_variazione()
 print(r)
+
+
