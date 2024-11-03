@@ -14,7 +14,7 @@ class View(object):
        self.txtCreatinina = ft.TextField(label="Creatinina", width=110)
        self.txtColesterolo = ft.TextField(label="Colesterolo", width=110)
        self.txtCk = ft.TextField(label="Ck", width=105)
-       self.ddData = ft.Dropdown(options=[ft.dropdown.Option("Opzione1"),ft.dropdown.Option("Opzione2")],label="Data",width=100)
+       self.ddData = ft.Dropdown(options=[ft.dropdown.Option("Opzione1"), ft.dropdown.Option("Opzione2"),ft.dropdown.Option("Opzione3")], label="Data",width=100)
 
 
        row1 = ft.Row([self.txtIn,self.txtMOLL,self.txtCreatinina,self.txtColesterolo,self.txtCk,self.ddData])

@@ -16,6 +16,6 @@ import scipy.stats as stats
 
 
 
-measurements = np.random.normal(loc = 20, scale = 5, size=100)
+measurements = np.random.normal(loc = 20, scale = 15, size=100)
 stats.probplot(measurements, dist="norm", plot=pylab)
 pylab.show()

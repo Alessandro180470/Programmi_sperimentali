@@ -11,6 +11,7 @@ import dataclasses
 import keyword
 import operator
 from math import sqrt
+import statistics
 
 
 # class patologia_dt1:
@@ -92,6 +93,27 @@ class calcolo_valore:
                 print(f'Attenzione il valore di ck che è :{v.ck} risulta essere molto alto rilevato in data:{v.data}')
         print(f'Ho rilevato {len(val_max)} valori alti del CK sopra i 200')
         return val_max
+
+    def covarianza_glicata_mmol(self):
+        global media_g
+        glicata = []
+        mmol = []
+        ck = []
+        creatinina = []
+        for v in self.valore:
+            glicata.append(v.glicata)
+            mmol.append(v.mmol)
+            ck.append(v.ck)
+            creatinina.append(v.creatinina)
+        covarianza_glicata_mmol = statistics.covariance(glicata,mmol)
+        covarianza_glicata_ck = statistics.covariance(glicata,ck)
+        covarianza_ck_mmol = statistics.covariance(mmol,ck)
+        covarianza_glicata_creatinina = statistics.covariance(glicata,creatinina)
+        return f'covarianza glic._mmol: {(covarianza_glicata_mmol)},glic._ck: {(covarianza_glicata_ck)},ck_mmol: {(covarianza_ck_mmol)},glic_creatin. :{(covarianza_glicata_creatinina)}'
+
+
+
+
 
     def media_glicata(self):
         """

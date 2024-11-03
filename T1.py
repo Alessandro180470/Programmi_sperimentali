@@ -110,12 +110,15 @@ analisi1 =patologia_dt1(float(input('Inserisci valore glicata: ')),int(input('In
 # ris1 = analisi_ematiche.media_e_valore_sqm_glicata()
 # print(ris1)
 
-ris3 = analisi_ematiche.calcolo_coefficiente_variazione()
+# ris3 = analisi_ematiche.calcolo_coefficiente_variazione()
+# print(ris3)
+# ris4 = analisi_ematiche.elimina_dati(540)
+# for v in ris4:
+#     print(v)
+# r = analisi_ematiche.calcolo_coefficiente_variazione()
+# print(r)
+
+ris5 = analisi_ematiche.media_e_valore_sqm_glicata()
+print(ris5)
+ris3 = analisi_ematiche.covarianza_glicata_mmol()
 print(ris3)
-ris4 = analisi_ematiche.elimina_dati(540)
-for v in ris4:
-    print(v)
-r = analisi_ematiche.calcolo_coefficiente_variazione()
-print(r)
-
-
