@@ -95,6 +95,15 @@ class calcolo_valore:
         return val_max
 
     def covarianza_glicata_mmol(self):
+        """
+        Questo modulo mi consente di calcolare
+        la covarianza fra due variabili come
+        ad esempio inserendo come valori la glicata
+        con mmol => un valore numerico che fornisce
+        una misura di quanto le due varino assieme.
+        :return:i vari valori tra le due variabili
+        prese in considerazione
+        """
         global media_g
         glicata = []
         mmol = []
@@ -106,10 +115,12 @@ class calcolo_valore:
             ck.append(v.ck)
             creatinina.append(v.creatinina)
         covarianza_glicata_mmol = statistics.covariance(glicata,mmol)
+        stdev = statistics.stdev(ck)
         covarianza_glicata_ck = statistics.covariance(glicata,ck)
         covarianza_ck_mmol = statistics.covariance(mmol,ck)
         covarianza_glicata_creatinina = statistics.covariance(glicata,creatinina)
-        return f'covarianza glic._mmol: {(covarianza_glicata_mmol)},glic._ck: {(covarianza_glicata_ck)},ck_mmol: {(covarianza_ck_mmol)},glic_creatin. :{(covarianza_glicata_creatinina)}'
+        return f'covarianza glic._mmol: {(covarianza_glicata_mmol)},glic._ck: {(covarianza_glicata_ck)},ck_mmol: {(covarianza_ck_mmol)},glic_creatin. :{(covarianza_glicata_creatinina)},devS(CK):{stdev}'
+
 
 
 

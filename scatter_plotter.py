@@ -13,3 +13,11 @@ plt.show()
 plt.plot(ypoints, marker = 'o')
 plt.grid()
 plt.show()
+import statistics
+
+# Sample data
+data = [1, 3, 5, 7, 9, 11]
+
+# Calculate standard deviation
+st_dev = statistics.stdev(data)#deviazione standard
+print(st_dev) # Output will be the standard deviation of the data set
